@@ -4,6 +4,8 @@ RUN apk add --update --no-cache openssl-dev libffi-dev  musl-dev python3-dev py3
   ln -fs /dev/stdout /var/log/nginx/access.log && \
   ln -fs /dev/stdout /var/log/nginx/error.log
 
+RUN /usr/bin/python3.8 -m pip install --upgrade pip
+
 RUN CRYPTOGRAPHY_DONT_BUILD_RUST=1 pip3 install certbot-dns-cloudflare
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
